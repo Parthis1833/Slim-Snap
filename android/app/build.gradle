@@ -57,6 +57,8 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+
     }
     signingConfigs {
         release {
@@ -85,4 +87,6 @@ flutter {
 dependencies {
     implementation group: 'com.google.android.material', name: 'material', version: '1.1.0-alpha05'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:multidex:1.0.3'
+
 }

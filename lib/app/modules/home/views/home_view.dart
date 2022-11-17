@@ -44,8 +44,7 @@ class HomeView extends GetView<HomeController> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              PopupMenuItem<int>(
-                onTap: _chooseFolderName,
+              PopupMenuItem<int>(          
                 value: 1,
                 child: const Text(
                   "Folder Name",
@@ -124,7 +123,6 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _shareImageWidget() {
-
     return Center(
         child: Column(
       children: [
