@@ -124,11 +124,21 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _shareImageWidget() {
+
     return Center(
-        child: IconButton(
-            iconSize: 80,
-            onPressed: controller.shareImage,
-            icon: const Icon(Icons.share)));
+        child: Column(
+      children: [
+        IconButton(
+          iconSize: 80,
+          onPressed: controller.shareImage,
+          icon: const Icon(Icons.share),
+        ),
+        Text(
+            "Compressed Image Location is \n ${controller.compressedFile!.path}"),
+        Text(
+            "New Compressed Image Size is ${(controller.compressedFile!.lengthSync() / 1024).toStringAsFixed(2)} KB")
+      ],
+    ));
   }
 
   Widget _imageWidget() {
