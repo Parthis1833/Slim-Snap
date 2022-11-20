@@ -119,6 +119,7 @@ class HomeView extends GetView<HomeController> {
               : const SizedBox())),
         ],
       )),
+    
     );
   }
 
@@ -225,9 +226,6 @@ class HomeView extends GetView<HomeController> {
 
   void _chooseFolderName() {
     Get.defaultDialog(
-        onCancel: () {
-          print("hii");
-        },
         title: 'Folder Name to save compressed files',
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
         content: Container(
@@ -238,6 +236,7 @@ class HomeView extends GetView<HomeController> {
                   controller: folderNameController,
                   onSubmitted: (value) {
                     controller.changeUserDirectory(folderNameController.text);
+                    
                     Get.back();
                   },
                   onChanged: (value) {

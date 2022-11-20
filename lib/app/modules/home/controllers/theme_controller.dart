@@ -15,7 +15,6 @@ class ThemeController extends GetxController {
       isDark ? ThemeMode.dark : ThemeMode.light;
 
   void toggleDarkMode() {
-    print(userPref.read('darkmode'));
     isDarkMode.value = !isDarkMode.value;
     if (userPref.read('darkmode') ?? false) {
       Get.changeTheme(ThemeData.dark());

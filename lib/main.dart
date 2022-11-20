@@ -17,7 +17,7 @@ void main() async {
   final themeController = Get.put(ThemeController());
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-    .then((_) {
+    .then((_) { 
       runApp(
         GetMaterialApp(
           title: "Application",

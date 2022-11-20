@@ -38,7 +38,6 @@ class ImageCompressController extends GetxController {
       outputFileName = "KS_Reduce${DateTime.now().microsecondsSinceEpoch}";
       outPath =
           "${generalDownloadDir.path}${homeController.directoryPath}/$outputFileName${filePath.substring(lastIndex)}";
-      print(outPath);
     }
     var result = await FlutterImageCompress.compressAndGetFile(
       file.absolute.path,

@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_reducer/app/modules/home/controllers/image-compressor-controller.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:path_provider/path_provider.dart';
 
 class HomeController extends GetxController {
   final mySite = "https://shyam-kachhadiya.web.app/";
@@ -18,7 +20,10 @@ class HomeController extends GetxController {
   File? compressedFile;
 
   final userPref = GetStorage();
-  bool get isDirectoryGiven => userPref.read('directory') ?? false;
+  bool isDirectoryGiven() {
+    return userPref.read('directory') == null;
+  }
+
   final imageCompressController = Get.put(ImageCompressController());
   String get directoryPath =>
       userPref.read('directory') ?? "Pictures/KS_Reduce";
@@ -59,7 +64,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print(isImageSelected.value);
   }
 
   @override
@@ -70,12 +74,31 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
+  // void createFolder() async {
+  //   final folderName = getUserDirectory();
+  //   final path = Directory("storage/emulated/0/$folderName");
+  //   if ((await path.exists())) {
+  //   } else {
+  //     path.create(recursive: true);
+  //   }
+  // }
+
   void createFolder() async {
     final folderName = getUserDirectory();
-    final path = Directory("storage/emulated/0/$folderName");
-    if ((await path.exists())) {
+
+    final dir = Directory(
+        '${(Platform.isAndroid ? await getExternalStorageDirectory() //FOR ANDROID
+                : await getApplicationSupportDirectory() //FOR IOS
+            )!.path}/$folderName');
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+    if ((await dir.exists())) {
+      // return dir.path;
     } else {
-      path.create();
+      dir.create(recursive: true);
+      // return dir.path;
     }
   }
 
@@ -92,11 +115,12 @@ class HomeController extends GetxController {
 
   String getUserDirectory() {
     final folderName =
-        isDirectoryGiven ? userPref.read('directory') : directoryPath;
+        isDirectoryGiven() ? userPref.read('directory') : directoryPath;
     return folderName;
   }
 
   void changeUserDirectory(String text) {
+    text = "Pictures/" + text;
     userPref.write("directory", text);
     createFolder();
   }
