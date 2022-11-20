@@ -13,7 +13,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   
   await GetStorage.init();
-  getPermissions();
+
   final themeController = Get.put(ThemeController());
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -31,21 +31,3 @@ void main() async {
     });
 }
 
-void getPermissions() async {
-  final homeController = Get.put(HomeController());
-
-  final status = await Permission.storage.request();
-  var state = await Permission.manageExternalStorage.status;
-  var state2 = await Permission.storage.status;
-
-
-  if (status.isGranted) {
-    homeController.createFolder();
-  }
-  if (!state2.isGranted) {
-    await Permission.storage.request();
-  }
-  if (!state.isGranted) {
-    await Permission.manageExternalStorage.request();
-  }
-}

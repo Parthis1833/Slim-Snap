@@ -74,33 +74,34 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
-  // void createFolder() async {
-  //   final folderName = getUserDirectory();
-  //   final path = Directory("storage/emulated/0/$folderName");
-  //   if ((await path.exists())) {
-  //   } else {
-  //     path.create(recursive: true);
-  //   }
-  // }
-
   void createFolder() async {
     final folderName = getUserDirectory();
-
-    final dir = Directory(
-        '${(Platform.isAndroid ? await getExternalStorageDirectory() //FOR ANDROID
-                : await getApplicationSupportDirectory() //FOR IOS
-            )!.path}/$folderName');
-    var status = await Permission.storage.status;
-    if (!status.isGranted) {
-      await Permission.storage.request();
-    }
-    if ((await dir.exists())) {
-      // return dir.path;
+    print(folderName);
+    final path = Directory("storage/emulated/0/$folderName");
+    if ((await path.exists())) {
     } else {
-      dir.create(recursive: true);
-      // return dir.path;
+      path.create(recursive: true);
     }
   }
+
+  // void createFolder() async {
+  //   final folderName = getUserDirectory();
+
+  //   final dir = Directory(
+  //       '${(Platform.isAndroid ? await getExternalStorageDirectory() //FOR ANDROID
+  //               : await getApplicationSupportDirectory() //FOR IOS
+  //           )!.path}/$folderName');
+  //   var status = await Permission.storage.status;
+  //   if (!status.isGranted) {
+  //     await Permission.storage.request();
+  //   }
+  //   if ((await dir.exists())) {
+  //     // return dir.path;
+  //   } else {
+  //     dir.create(recursive: true);
+  //     // return dir.path;
+  //   }
+  // }
 
   Future<bool> compressFile(String outputFileName) async {
     if (this.image != null) {
