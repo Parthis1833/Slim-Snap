@@ -74,13 +74,7 @@ class HomeView extends GetView<HomeController> {
                   ],
                 ),
               ),
-              const PopupMenuItem<int>(
-                value: 3,
-                child: Text(
-                  "About us",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+
             ],
           ),
         ],
