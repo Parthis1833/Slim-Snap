@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('KS Reducer'),
+        title: const Text('Slim Snap'),
         actions: [
           PopupMenuButton(
             onSelected: (value) {
@@ -33,7 +33,9 @@ class HomeView extends GetView<HomeController> {
               }
             },
             icon: const Icon(
-                Icons.menu), //don't specify icon if you want 3 dot menu
+                Icons.menu,
+              color: Colors.white,
+            ), //don't specify icon if you want 3 dot menu
             color: Colors.blue,
             itemBuilder: (context) => [
               PopupMenuItem<int>(
@@ -44,9 +46,9 @@ class HomeView extends GetView<HomeController> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              PopupMenuItem<int>(          
+              const PopupMenuItem<int>(
                 value: 1,
-                child: const Text(
+                child: Text(
                   "Folder Name",
                   style: TextStyle(color: Colors.white),
                 ),
