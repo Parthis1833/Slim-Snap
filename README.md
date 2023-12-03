@@ -1,4 +1,4 @@
-# image_reducer
+# Slim Snap
 
 A new Flutter project.
 
