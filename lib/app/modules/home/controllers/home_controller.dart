@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:image_reducer/app/modules/home/controllers/image-compressor-controller.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:slimsnap/app/modules/home/controllers/image-compressor-controller.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:path_provider/path_provider.dart';
 
 class HomeController extends GetxController {
   final mySite = "https://shyam-kachhadiya.web.app/";
@@ -105,8 +103,8 @@ class HomeController extends GetxController {
 
   Future<bool> compressFile(String outputFileName) async {
     if (this.image != null) {
-      compressedFile = await imageCompressController.compressFile(
-          this.image!, outputFileName);
+      compressedFile = (await imageCompressController.compressFile(
+          this.image!, outputFileName)) as File?;
       isImageCompressed.value = true;
       return true;
     }

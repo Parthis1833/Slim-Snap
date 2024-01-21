@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import 'package:image_reducer/app/modules/home/bindings/home_binding.dart';
-import 'package:image_reducer/app/modules/home/views/home_view.dart';
+import 'package:slimsnap/app/modules/home/bindings/home_binding.dart';
+import 'package:slimsnap/app/modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
 

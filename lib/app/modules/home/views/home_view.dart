@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/home_controller.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends GetView<HomeController> {
   final ImagePicker _picker = ImagePicker();
   final outputFileNameController = TextEditingController();
   final folderNameController = TextEditingController();
+
+  HomeView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +33,9 @@ class HomeView extends GetView<HomeController> {
             },
             icon: const Icon(
                 Icons.menu,
-              color: Colors.white,
-            ), //don't specify icon if you want 3 dot menu
-            color: Colors.blue,
+
+            ),
+            color: Colors.blueGrey,
             itemBuilder: (context) => [
               PopupMenuItem<int>(
                 onTap: () {},
@@ -173,50 +172,48 @@ class HomeView extends GetView<HomeController> {
     Get.defaultDialog(
         title: 'File Name for compressed object',
         titlePadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-        content: Container(
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: outputFileNameController,
-                  onSubmitted: (value) {
-                    controller.compressFile(outputFileNameController.text);
-                    Get.back();
-                  },
-                  onChanged: (value) {
-                    //Do something with the user input.
-                  },
-                  decoration: const InputDecoration(
-                    hintText: 'image name',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 1.0),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Colors.lightBlueAccent, width: 2.0),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
+        content: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: outputFileNameController,
+                onSubmitted: (value) {
+                  controller.compressFile(outputFileNameController.text);
+                  Get.back();
+                },
+                onChanged: (value) {
+                  //Do something with the user input.
+                },
+                decoration: const InputDecoration(
+                  hintText: 'image name',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.lightBlueAccent, width: 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                    borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
                 ),
               ),
-              IconButton(
-                  onPressed: () {
-                    controller.compressFile(outputFileNameController.text);
-                    Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.send,
-                    color: Colors.blue,
-                  )),
-            ],
-          ),
+            ),
+            IconButton(
+                onPressed: () {
+                  controller.compressFile(outputFileNameController.text);
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.send,
+                  color: Colors.blue,
+                )),
+          ],
         ));
   }
 
@@ -239,7 +236,7 @@ class HomeView extends GetView<HomeController> {
                     //Do something with the user input.
                   },
                   decoration: const InputDecoration(
-                    hintText: 'KS',
+                    hintText: 'Slim Snap',
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     border: OutlineInputBorder(
@@ -274,10 +271,6 @@ class HomeView extends GetView<HomeController> {
   }
 
   void _aboutUs() async {
-    if (await canLaunchUrl(Uri.parse(controller.mySite))) {
-      await launchUrl(Uri.parse(controller.mySite));
-    } else
-      // can't launch url, there is some error
       throw "Could not launch $controller.mySite";
   }
 }

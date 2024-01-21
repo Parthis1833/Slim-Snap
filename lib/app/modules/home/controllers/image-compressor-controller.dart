@@ -1,12 +1,8 @@
 import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:image_reducer/app/modules/home/controllers/home_controller.dart';
-import 'package:image_reducer/app/modules/home/controllers/utilController.dart';
-import 'package:path/path.dart';
+import 'package:slimsnap/app/modules/home/controllers/home_controller.dart';
+import 'package:slimsnap/app/modules/home/controllers/utilController.dart';
 
 class ImageCompressController extends GetxController {
   final utilController = Get.put(UtilController());
@@ -24,7 +20,7 @@ class ImageCompressController extends GetxController {
   @override
   void onClose() {}
 
-  Future<File> compressFile(File file, String outputFileName) async {
+  Future<XFile> compressFile(File file, String outputFileName) async {
     final homeController = Get.put(HomeController());
     final filePath = file.absolute.path;
     String outPath = '';

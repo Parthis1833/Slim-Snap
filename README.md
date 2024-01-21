@@ -1,4 +1,4 @@
-# Slim Snap
+# slimsnap
 
 A new Flutter project.
 
